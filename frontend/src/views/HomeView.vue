@@ -1,9 +1,7 @@
-<script setup>
-import TheWelcome from '../components/TheWelcome.vue'
-</script>
-
 <template>
-  <main>
-    <TheWelcome />
-  </main>
+  <Search />
 </template>
+
+<script setup>
+import Search from "../components/Search.vue";
+</script>
