@@ -1,16 +1,16 @@
 from rest_framework import serializers
 
-from backend.car.models import Country, Brand, Car, CarTTX, Comment
+from car.models import Country, Brand, Car, CarTTX, Comment
 
 
-class CountrySerializers(serializers.ModelSerializer):
+class CountrySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Country
         fields = ['id', 'name']
 
 
-class BrandSerializers(serializers.ModelSerializer):
+class BrandSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Brand

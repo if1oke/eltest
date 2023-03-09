@@ -1,20 +1,31 @@
 from rest_framework import viewsets
 
-from backend.car.models import Country
+from .serializers import (BrandSerializer, CarSerializer,
+                                     CarTTXSerializer, CommentSerializer,
+                                     CountrySerializer)
+from car.models import Brand, Car, CarTTX, Comment, Country
 
 
 class CountryViewSet(viewsets.ModelViewSet):
     queryset = Country.objects.all()
-    pass
+    serializer_class = CountrySerializer
 
 
 class BrandViewSet(viewsets.ModelViewSet):
-    pass
+    queryset = Brand.objects.all()
+    serializer_class = BrandSerializer
 
 
 class CarViewSet(viewsets.ModelViewSet):
-    pass
+    queryset = Car.objects.all()
+    serializer_class = CarSerializer
+
+
+class CarTTXViewSet(viewsets.ModelViewSet):
+    queryset = CarTTX
+    serializer_class = CarTTXSerializer
 
 
 class CommentViewSet(viewsets.ModelViewSet):
-    pass
+    queryset = Comment.objects.all()
+    serializer_class = CommentSerializer
