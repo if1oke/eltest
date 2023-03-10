@@ -1,7 +1,7 @@
 from django.urls import include, path, re_path
 from rest_framework.routers import DefaultRouter
 
-from .views import CountryViewSet, BrandViewSet, CarViewSet, CommentViewSet
+from .views import BrandViewSet, CarViewSet, CommentViewSet, CountryViewSet
 
 router = DefaultRouter()
 router.register(r'countrys', CountryViewSet, basename='country')

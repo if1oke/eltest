@@ -1,9 +1,9 @@
 from rest_framework import viewsets
 
-from .serializers import (BrandSerializer, CarSerializer,
-                                     CarTTXSerializer, CommentSerializer,
-                                     CountrySerializer)
 from car.models import Brand, Car, CarTTX, Comment, Country
+
+from .serializers import (BrandSerializer, CarSerializer, CarTTXSerializer,
+                          CommentSerializer, CountrySerializer)
 
 
 class CountryViewSet(viewsets.ModelViewSet):

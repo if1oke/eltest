@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Country, Brand, Car, CarTTX, Comment
+from .models import Brand, Car, CarTTX, Comment, Country
 
 
 @admin.register(Country)

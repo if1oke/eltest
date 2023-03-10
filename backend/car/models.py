@@ -1,9 +1,9 @@
+from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from django.utils import timezone
-from django.conf import settings
 
 User = get_user_model()
 
@@ -84,11 +84,34 @@ class Car(models.Model):
                 f'выпуска: {self.year_completion}')
         return super().clean(*args, **kwargs)
 
+    @property
+    def avg_price(self):
+        year = self.year_release
+        price = self.base_price
+        # Правильное решение
+        # avg_price = []
+        # percent = [1, 1.15, 1.10, 1.07, 1.05]
+        # for i, p in enumerate(percent):
+        #     price *= percent[i]
+        #     avg_price.append(
+        #         {'year': year, 'avg_price': '%.2f' % price}
+        #     )
+        #     year += 1
+        # return avg_price
+    # TODO Ошибка при вычислении средней суммы за год
+        return [
+            {'year': year, 'avg_price': price * 1},
+            {'year': year+1, 'avg_price': price * 1.15},
+            {'year': year+2, 'avg_price': price * 1.10},
+            {'year': year+3, 'avg_price': price * 1.07},
+            {'year': year+4, 'avg_price': price * 1.05},
+        ]
+
 
 class CarTTX(models.Model):
     """Технические характеристики автомобилей с двигателем внутреннего
     сгорания"""
-    kpp_choices = (
+    KPP_CHOICES = (
         ('Ручная', 'Ручная'),
         ('Автоматическая', 'Автоматическая'),
         ('Робот', 'Робот')
@@ -111,9 +134,9 @@ class CarTTX(models.Model):
         verbose_name='Количество цилиндров',
         validators=[MinValueValidator(1, 'Без поршней авто не поедет')],
     )
-    kpp = models.CharField(choices=kpp_choices,
+    kpp = models.CharField(choices=KPP_CHOICES,
                            verbose_name='Тип коробки передач',
-                           max_length=256, default=kpp_choices[0][1])
+                           max_length=256, default=KPP_CHOICES[0][1])
 
     class Meta:
         verbose_name = 'Технические характеристики'
