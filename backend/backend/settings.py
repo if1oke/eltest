@@ -1,7 +1,7 @@
 import os.path
 from pathlib import Path
-from dotenv import load_dotenv
 
+from dotenv import load_dotenv
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 # print(BASE_DIR)
@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     'djoser',
     'car',
     'api',
+    'drf_spectacular',
 ]
 
 MIDDLEWARE = [
@@ -114,4 +115,13 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS':
         'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 10,
+
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+}
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Cars eltest',
+    'DESCRIPTION': 'Description of endpoints for the test task',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
 }
